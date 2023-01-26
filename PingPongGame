@@ -1,0 +1,54 @@
+#!/bin/bash
+
+# Initialize variables
+player1_score=0
+player2_score=0
+
+# Function to print the current score
+print_score() {
+  echo "Player 1: $player1_score"
+  echo "Player 2: $player2_score"
+}
+
+# Function to handle the game logic
+play_game() {
+  while true; do
+    # Player 1's turn
+    echo "Player 1: Type 'ping'"
+    read input
+    if [ "$input" == "ping" ]; then
+      echo "Player 2: Type 'pong'"
+      read input
+      if [ "$input" == "pong" ]; then
+        player1_score=$((player1_score+1))
+        echo "Player 1 scores!"
+        print_score
+      else
+        echo "Player 2 loses!"
+        exit
+      fi
+    else
+      echo "Player 1 loses!"
+      exit
+    fi
+
+    # Player 2's turn
+    echo "Player 2: Type 'ping'"
+    read input
+    if [ "$input" == "ping" ]; then
+      echo "Player 1: Type 'pong'"
+      read input
+      if [ "$input" == "pong" ]; then
+        player2_score=$((player2_score+1))
+        echo "Player 2 scores!"
+        print_score
+      else
+        echo "Player 1 loses!"
+        exit
+      fi
+    else
+      echo "Player 2 loses!"
+      exit
+    fi
+  done
+}
